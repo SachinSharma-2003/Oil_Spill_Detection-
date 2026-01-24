@@ -1,139 +1,166 @@
-# 🌊 AI-Enabled Marine Oil Surveillance System  
-### Automated SAR Neural Analysis & Operational Response Protocol
+# 🌊 AI-Driven System for Oil Spill Identification and Monitoring
+
+<p align="center">
+  <strong>
+    Deep learning–based oil spill detection and monitoring system using
+    Synthetic Aperture Radar (SAR) satellite imagery and U-Net segmentation.
+  </strong>
+</p>
 
 ---
 
-## 📌 Project Overview
+## 📌 Overview
+Oil spills pose a severe threat to marine ecosystems, coastal economies, and environmental safety. Traditional oil spill monitoring relies heavily on manual inspection of satellite images, which is time-consuming, error-prone, and difficult to scale for continuous monitoring.
 
-Oil spills pose a critical threat to marine ecosystems, coastal livelihoods, and national economies, demanding rapid detection and precise response planning.  
-This project presents an **industrial-grade AI surveillance platform** that automates the **detection and segmentation of marine oil spills** using **Synthetic Aperture Radar (SAR) satellite imagery**.
-
-Leveraging a **deep learning U-Net architecture**, the system transforms raw radar backscatter into **actionable maritime intelligence**, delivering:
-- Pixel-level oil spill segmentation  
-- Accurate areal estimation in square kilometers ($km^2$)  
-- Severity-based operational response guidance for maritime authorities  
-
-The platform is deployed as a **real-time interactive dashboard** optimized for command-center-level monitoring.
+This project presents an **AI-driven system for oil spill identification and monitoring** that automatically detects and segments oil spill regions from **SAR satellite imagery** using **deep learning–based semantic segmentation**. The system enables **pixel-level oil spill localization**, making it suitable for real-world maritime surveillance and environmental monitoring applications.
 
 ---
 
 ## 🎯 Objectives
-
-- **Automated Target Acquisition**  
-  Eliminate manual interpretation errors by identifying oil slicks through neural signal decoding.
-
-- **Precision Segmentation**  
-  Perform pixel-level mask extraction to accurately distinguish hydrocarbons from open-water backscatter.
-
-- **Areal Quantification**  
-  Compute the physical extent of oil spills in square kilometers ($km^2$) to support effective resource allocation.
-
-- **Operational Intelligence**  
-  Provide severity-based risk classification (Low / Medium / High) with response recommendations for marine departments.
+- Automate oil spill detection from SAR satellite imagery  
+- Perform **pixel-level semantic segmentation** using deep learning  
+- Accurately distinguish oil spills from look-alike phenomena  
+- Enable **scalable and deployment-ready** monitoring systems  
 
 ---
 
-## 🗂 Dataset
+## 🧠 Model Architecture
+- **Model:** U-Net (Encoder–Decoder Convolutional Neural Network)  
+- **Task:** Binary semantic segmentation (Oil Spill / Background)  
+- **Input:** SAR satellite images  
+- **Output:** Binary segmentation mask indicating oil-contaminated regions  
 
-- **Input**: Grayscale SAR satellite images  
-- **Output**: Binary segmentation masks (Oil Spill / Non-Oil)  
-- **Training Samples**: 6,455 images  
-- **Validation Samples**: 1,615 images  
-
-The dataset captures diverse spill geometries, noise conditions, and environmental backscatter variations.
-
----
-
-## ⚙️ Methodology
-
-### 1️⃣ Preprocessing
-- **Speckle Reduction**: Median filtering to suppress SAR-specific grain noise  
-- **Standardization**: Resize to $256 \times 256$ and normalize pixel values to $[0,1]$  
-- **Binarization**: Thresholded mask preparation for supervised learning  
+U-Net is selected due to its strong spatial localization capability and robustness against noise in SAR imagery.
 
 ---
 
-### 2️⃣ Model Architecture
-- **U-Net Encoder–Decoder**  
-  Symmetrical CNN architecture for simultaneous contextual understanding and spatial localization.
-- **Skip Connections**  
-  Preserve high-resolution spatial features across network depth.
-- **Sigmoid Activation**  
-  Produces pixel-wise probability maps for oil spill segmentation.
+## ⚙️ Detailed Work Completed
+
+### 1️⃣ Dataset Preparation
+- Collected open-source **SAR satellite oil spill datasets**
+- Preprocessing steps included:
+  - Image resizing to a fixed resolution
+  - Pixel value normalization
+  - Alignment of SAR images with corresponding ground truth masks
 
 ---
 
-### 3️⃣ Training & Evaluation
-- **Optimizer**: Adam  
-- **Training Strategy**: Mixed-precision training for accelerated convergence  
-- **Loss Function**: Binary Cross-Entropy  
-- **Evaluation Metrics**:
-  - Dice Coefficient
-  - Intersection over Union (IoU)
+### 2️⃣ Model Development
+- Designed and implemented a **U-Net architecture** using TensorFlow and Keras
+- Encoder extracts hierarchical spatial features
+- Decoder reconstructs pixel-level segmentation masks
+- Used **Binary Cross-Entropy and Dice Loss** for effective segmentation
 
 ---
 
-## ⚓ Professional Dashboard Features
+### 3️⃣ Training and Evaluation
+- Trained the model on labeled SAR oil spill data
+- Evaluated using standard segmentation metrics:
+  - **Dice Coefficient**
+  - **Intersection over Union (IoU)**
 
-- **Glassmorphism UI**  
-  Premium dark-mode interface designed for maritime surveillance environments.
+📊 **Performance Metrics**
+- **Mean Dice Score:** ~0.70  
+- **Mean IoU:** ~0.57  
 
-- **Areal Scaling**  
-  Real-time conversion of segmentation output into physical spill area ($km^2$).
-
-- **Neural Latency Monitoring**  
-  Live AI inference timing (typically < 1.0s per image).
-
-- **Visual Legends**  
-  - Binary Mask: **White = Oil Detected**  
-  - Heatmap: **Red = Oil Spill | Blue = Water**
-
-- **Dynamic Reset Handling**  
-  Automatic session cleanup on new SAR uplink to ensure UI stability.
+The model demonstrated stable and reliable performance on noisy SAR imagery.
 
 ---
 
-## 📊 Results
-
-- **Mean Dice Score**: 0.70  
-- **Mean IoU**: 0.57  
-- **AI Confidence**: Dynamic probability estimation per image  
-- **Stability**: Robust generalization across noisy SAR conditions  
-
-The model demonstrates reliable segmentation performance suitable for operational monitoring.
+### 4️⃣ Model Inference and Visualization
+- Generated:
+  - Binary oil spill segmentation masks
+  - Probability heatmaps showing oil spill confidence
+- Visualized predictions using Matplotlib and Streamlit
 
 ---
 
-## 🚀 Future Enhancements
-
-- **Attention U-Net**  
-  Improved boundary detection for low-contrast oil slicks.
-
-- **GIS Integration**  
-  Real-time geospatial mapping and GPS-based vessel dispatch.
-
-- **Temporal Drift Tracking**  
-  Time-series analysis to forecast oil slick movement using ocean current and wind data.
+### 5️⃣ Deployment
+- Deployed the trained model using **Streamlit**
+- Provides real-time oil spill detection from uploaded SAR images
+- User-friendly interface for visualization and interpretation
 
 ---
 
-## 🛠 Technologies Used
+## 🌐 Deployment Link (Mandatory)
+🔗 **Live Application:**  
+👉 **https://huggingface.co/spaces/Sachin-007/AI-Driven-Oil-Spill-Detection-and-Monitoring**
 
-- **Programming Language**: Python  
-- **Libraries**: TensorFlow, Keras, OpenCV, NumPy, Matplotlib  
-- **Deployment**: Streamlit (Custom Premium CSS)  
-- **Environment**: Google Colab, Hugging Face Hub  
 
 ---
 
-## 👨‍🎓 Author
+## 📸 Model Testing & Results (Screenshots)
 
-**Sachin Sharma A**  
-Final Year B.Tech (Information Technology)  
-Infosys Springboard Intern  
-**Specialization**: AI–IoT Enabled Marine Detection Systems  
+### 🔹 Input SAR Image
+Original SAR satellite image provided to the model.
+
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/1660a295-fe4d-4719-a227-22993401a1fd" />
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/672cef27-56bd-4af3-9f5c-a6d52158b6ea" />
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/28bba3c3-1559-4277-954e-313d4e290059" />
+
+
+### 🔹 Ground Truth Mask
+Manually labeled oil spill regions used for training and validation.
+
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/6450d3ec-c2b2-4a16-b560-b3b9f4123ab9" />
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/dd195521-f0db-4d69-9534-56ca44f6eeac" />
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/9d17e94c-63e8-47a4-a009-8210937b2ec5" />
+
+
+### 🔹 Probability Heatmap
+Visualization showing confidence levels of oil spill detection.
+
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/6719ed7d-b848-4964-97be-838dbed65029" />
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/757f0c1c-2a61-4bf4-89d4-0d23f5b6345c" />
+<img width="256" height="256" alt="Image" src="https://github.com/user-attachments/assets/3fd2ac62-2be9-40ec-ab4b-9c0c7243ca57" />
+
+
+
+> These screenshots demonstrate the model’s ability to accurately detect and localize oil spill regions at the pixel level.
 
 ---
 
-## 📄 License
-This project is intended for academic, research, and demonstration purposes.
+## 🛠 Tech Stack
+- **Programming Language:** Python  
+- **Deep Learning Framework:** TensorFlow / Keras  
+- **Libraries:** OpenCV, NumPy, Matplotlib  
+- **Web Framework:** Streamlit  
+- **Deployment Platform:** Hugging Face / Streamlit Cloud  
+
+---
+
+## 🚀 How to Run Locally
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+---
+
+## 🔮 Future Improvements
+
+<ul>
+  <li>Attention U-Net for enhanced boundary detection</li>
+  <li>GIS-based oil spill localization</li>
+  <li>Temporal analysis to track oil spill spread over time</li>
+  <li>Integration with real-time satellite data pipelines</li>
+</ul>
+
+---
+
+## 👨‍💻 Author
+
+<p>Sachin Sharma A</p>
+<p>AI / Machine Learning Enthusiast</p>
+
+<p>Passionate about building practical, AI-driven deep learning systems with real-world environmental impact.</p>
+
+---
+
+## 📜 License
+
+<p>This project is licensed under the MIT License.</p>
+
+---
+
+<h4 align="center">⭐ If you find this project useful or interesting, please give it a star — it really helps and motivates further improvements!</h4>
